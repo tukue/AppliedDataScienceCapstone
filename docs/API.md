@@ -146,7 +146,7 @@ Normalize numeric features.
 #### Functions
 
 ##### `save_figure(fig: plt.Figure, filename: str, dpi: int = 300) -> Path`
-Save figure to `notebooks/figures/` directory.
+Save figure to the `notebooks/figures/` directory with presentation-ready image settings.
 
 **Parameters:**
 - `fig` (plt.Figure): Matplotlib figure object
@@ -158,13 +158,14 @@ Save figure to `notebooks/figures/` directory.
 
 ---
 
-##### `plot_distribution(df: pd.DataFrame, column: str, title: str = None) -> plt.Figure`
-Plot distribution of a column.
+##### `plot_distribution(df: pd.DataFrame, column: str, title: str = None, top_n: int = 15) -> plt.Figure`
+Plot a professional distribution chart for numeric or categorical data.
 
 **Parameters:**
 - `df` (pd.DataFrame): Input DataFrame
 - `column` (str): Column to plot
 - `title` (str): Plot title (optional)
+- `top_n` (int): Maximum categories to show for categorical columns. Default: 15
 
 **Returns:**
 - `plt.Figure`: Matplotlib figure
@@ -172,7 +173,7 @@ Plot distribution of a column.
 ---
 
 ##### `plot_correlation_matrix(df: pd.DataFrame, figsize: Tuple = (12, 10)) -> plt.Figure`
-Plot correlation matrix heatmap.
+Plot a formatted correlation matrix heatmap.
 
 **Parameters:**
 - `df` (pd.DataFrame): Input DataFrame
@@ -184,13 +185,54 @@ Plot correlation matrix heatmap.
 ---
 
 ##### `plot_scatter(df: pd.DataFrame, x: str, y: str, title: str = None) -> plt.Figure`
-Plot scatter plot.
+Plot a professional scatter plot.
 
 **Parameters:**
 - `df` (pd.DataFrame): Input DataFrame
 - `x` (str): X-axis column
 - `y` (str): Y-axis column
 - `title` (str): Plot title (optional)
+
+**Returns:**
+- `plt.Figure`: Matplotlib figure
+
+---
+
+##### `plot_categorical_vs_target(df: pd.DataFrame, category_col: str, target_col: str, title: str = None) -> plt.Figure`
+Plot average target values by category as a horizontal bar chart.
+
+**Parameters:**
+- `df` (pd.DataFrame): Input DataFrame
+- `category_col` (str): Categorical column
+- `target_col` (str): Target column
+- `title` (str): Plot title (optional)
+
+**Returns:**
+- `plt.Figure`: Matplotlib figure
+
+---
+
+##### `plot_model_performance(y_true: np.ndarray, y_pred: np.ndarray, metric_type: str = "classification") -> plt.Figure`
+Plot model performance output. Classification output shows a confusion matrix; other metric types show residuals.
+
+**Parameters:**
+- `y_true` (np.ndarray): True labels or values
+- `y_pred` (np.ndarray): Predicted labels or values
+- `metric_type` (str): `"classification"` or another value for residual output
+
+**Returns:**
+- `plt.Figure`: Matplotlib figure
+
+---
+
+##### `plot_feature_importance(feature_names: Sequence[str], importance_values: Sequence[float], title: str = None, top_n: int = 15) -> plt.Figure`
+Plot ranked feature importance values as a professional horizontal bar chart.
+
+**Parameters:**
+- `feature_names` (Sequence[str]): Feature names in the same order as importance values
+- `importance_values` (Sequence[float]): Numeric feature importance values
+- `title` (str): Plot title (optional)
+- `top_n` (int): Maximum features to show. Default: 15
 
 **Returns:**
 - `plt.Figure`: Matplotlib figure
@@ -358,12 +400,13 @@ Make probability predictions.
 
 #### Function
 
-##### `setup_logger(name: str, log_file: str = None) -> logging.Logger`
-Set up a logger with console and optional file handlers.
+##### `setup_logger(name: str, log_file: str = None, console: bool = False) -> logging.Logger`
+Set up a silent-by-default logger with optional console and file handlers.
 
 **Parameters:**
 - `name` (str): Logger name (typically `__name__`)
 - `log_file` (str): Optional log file path
+- `console` (bool): Emit logs to console output. Default: `False`
 
 **Returns:**
 - `logging.Logger`: Configured logger instance
@@ -374,6 +417,12 @@ from src.logger import setup_logger
 
 logger = setup_logger(__name__, log_file='my_script.log')
 logger.info("Starting analysis...")
+```
+
+Use `console=True` only when interactive debug output is needed:
+
+```python
+logger = setup_logger(__name__, console=True)
 ```
 
 ---
