@@ -1,6 +1,4 @@
 """Configuration management for the project."""
-
-import os
 from pathlib import Path
 
 # Project paths
@@ -30,3 +28,4 @@ VALIDATION_SIZE = 0.2
 # Logging configuration
 LOG_FORMAT = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 LOG_LEVEL = "INFO"
+LOG_TO_CONSOLE = False

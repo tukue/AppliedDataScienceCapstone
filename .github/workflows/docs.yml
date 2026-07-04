@@ -20,10 +20,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.11'
 
@@ -32,33 +32,33 @@ jobs:
         # Check all markdown files exist and are readable
         for file in README.md QUICKSTART.md CONTRIBUTING.md REFACTORING_COMPLETE.md PROJECT_REFACTORING.md; do
           if [ -f "$file" ]; then
-            echo "✅ Found $file"
+            echo "Found $file"
             wc -l "$file"
           else
-            echo "⚠️  Missing $file"
+            echo "Missing $file"
           fi
         done
 
     - name: Validate markdown syntax
       run: |
         pip install mdformat
-        mdformat --check *.md docs/*.md 2>/dev/null || echo "📝 Markdown style suggestions available"
+        mdformat --check *.md docs/*.md 2>/dev/null || echo "Markdown style suggestions available"
 
     - name: Check API documentation
       run: |
         if [ -f "docs/API.md" ]; then
-          echo "✅ API documentation exists"
-          echo "📊 API doc size: $(wc -l < docs/API.md) lines"
+          echo "API documentation exists"
+          echo "API doc size: $(wc -l < docs/API.md) lines"
         else
-          echo "❌ API documentation missing!"
+          echo "API documentation missing!"
           exit 1
         fi
 
     - name: Verify links
       run: |
-        echo "📋 Checking documentation structure..."
+        echo "Checking documentation structure..."
         echo "Files:"
-        ls -la *.md docs/*.md 2>/dev/null || echo "⚠️  Some files missing"
+        ls -la *.md docs/*.md 2>/dev/null || echo "Some files missing"
 
   api-docs-validation:
     name: Validate API Documentation
@@ -66,10 +66,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.11'
         cache: 'pip'
@@ -91,8 +91,8 @@ jobs:
         functions = re.findall(r'##### `([^`]+)`', content)
         classes = re.findall(r'##### Class: `([^`]+)`', content)
         
-        print(f"✅ Documented functions: {len(functions)}")
-        print(f"✅ Documented classes: {len(classes)}")
+        print(f"Documented functions: {len(functions)}")
+        print(f"Documented classes: {len(classes)}")
         
         if len(functions) > 0:
             print("Functions documented:")
