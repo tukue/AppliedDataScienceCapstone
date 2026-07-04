@@ -30,7 +30,7 @@ def handle_missing_values(df: pd.DataFrame, strategy: str = "drop") -> pd.DataFr
         numeric_cols = df.select_dtypes(include=[np.number]).columns
         df[numeric_cols] = df[numeric_cols].fillna(df[numeric_cols].median())
     elif strategy == "forward_fill":
-        df = df.fillna(method="ffill")
+        df = df.ffill()
 
     logger.info(f"Missing values after handling: {df.isnull().sum().sum()}")
     return df
@@ -83,6 +83,7 @@ def encode_categorical(
     elif method == "label":
         from sklearn.preprocessing import LabelEncoder
 
+        df = df.copy()
         for col in columns:
             le = LabelEncoder()
             df[col] = le.fit_transform(df[col].astype(str))

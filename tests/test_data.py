@@ -1,5 +1,6 @@
 """Unit tests for data module."""
 
+import warnings
 import pytest
 import pandas as pd
 import numpy as np
@@ -57,6 +58,17 @@ class TestDataProcessing:
 
         assert result.loc[1, "feature"] == 1
 
+    def test_handle_missing_values_forward_fill_does_not_warn(self):
+        """Test forward fill uses the non-deprecated pandas API."""
+        df = pd.DataFrame({"feature": [1, np.nan, 3]})
+
+        with warnings.catch_warnings(record=True) as caught_warnings:
+            warnings.simplefilter("always")
+            result = handle_missing_values(df, strategy="forward_fill")
+
+        assert result.loc[1, "feature"] == 1
+        assert len(caught_warnings) == 0
+
     def test_remove_outliers(self, sample_df):
         """Test outlier removal."""
         # Add some outliers
@@ -76,6 +88,16 @@ class TestDataProcessing:
 
         assert result["category"].dtype.kind in {"i", "u"}
         assert set(result["category"].unique()) == {0, 1, 2}
+
+    def test_encode_categorical_label_does_not_mutate_input(self, sample_df):
+        """Test label encoding preserves the caller's DataFrame."""
+        original = sample_df.copy(deep=True)
+
+        result = encode_categorical(sample_df, ["category"], method="label")
+
+        pd.testing.assert_frame_equal(sample_df, original)
+        assert result is not sample_df
+        assert result["category"].dtype.kind in {"i", "u"}
 
     def test_normalize_features(self, sample_df):
         """Test feature normalization."""

@@ -16,9 +16,12 @@ class TestFeatureEngineering:
     def test_create_datetime_features(self):
         """Test date feature extraction."""
         df = pd.DataFrame({"launch_date": ["2020-05-30"]})
+        original = df.copy(deep=True)
 
         result = create_datetime_features(df, "launch_date")
 
+        pd.testing.assert_frame_equal(df, original)
+        assert result is not df
         assert result.loc[0, "launch_date_year"] == 2020
         assert result.loc[0, "launch_date_month"] == 5
         assert result.loc[0, "launch_date_day"] == 30
@@ -27,9 +30,12 @@ class TestFeatureEngineering:
     def test_create_interaction_features(self):
         """Test interaction feature creation skips missing pairs."""
         df = pd.DataFrame({"payload": [2, 3], "flight": [10, 20]})
+        original = df.copy(deep=True)
 
         result = create_interaction_features(df, [("payload", "flight"), ("payload", "missing")])
 
+        pd.testing.assert_frame_equal(df, original)
+        assert result is not df
         assert "payload_x_flight" in result.columns
         assert "payload_x_missing" not in result.columns
         assert result["payload_x_flight"].tolist() == [20, 60]

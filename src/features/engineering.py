@@ -19,6 +19,7 @@ def create_datetime_features(df: pd.DataFrame, date_column: str) -> pd.DataFrame
     Returns:
         DataFrame with new datetime features
     """
+    df = df.copy()
     df[date_column] = pd.to_datetime(df[date_column])
 
     df[f"{date_column}_year"] = df[date_column].dt.year
@@ -42,6 +43,7 @@ def create_interaction_features(df: pd.DataFrame, feature_pairs: List[Tuple]) ->
     Returns:
         DataFrame with interaction features
     """
+    df = df.copy()
     for col1, col2 in feature_pairs:
         if col1 in df.columns and col2 in df.columns:
             df[f"{col1}_x_{col2}"] = df[col1] * df[col2]
