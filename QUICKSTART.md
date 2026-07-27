@@ -2,13 +2,13 @@
 
 Use this guide to run the lab, inspect the original outputs, and validate the refactored package.
 
-For the full project workflow, see [Data Science Methodology](docs/METHODOLOGY.md). It explains how the lab moves from business understanding through data collection, preparation, EDA, modeling, evaluation, and communication.
+For a reviewer-friendly explanation of the repository, start with [Project Guide](docs/PROJECT_GUIDE.md). For the full project workflow, see [Data Science Methodology](docs/METHODOLOGY.md).
 
 ## 1. Set Up the Environment
 
 ```bash
-git clone git@github.com:tukue/AppliedDataScienceCapstone.git
-cd AppliedDataScienceCapstone
+git clone git@github.com:tukue/AppliedDataScience-project.git
+cd AppliedDataScience-project
 
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate

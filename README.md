@@ -1,11 +1,23 @@
-# SpaceX Falcon 9 Landing Prediction
+# AppliedDataScience Project: SpaceX Falcon 9 Landing Prediction
 
-[![Tests & Code Quality](https://github.com/tukue/AppliedDataScienceCapstone/actions/workflows/tests.yml/badge.svg)](https://github.com/tukue/AppliedDataScienceCapstone/actions/workflows/tests.yml)
-[![Documentation](https://github.com/tukue/AppliedDataScienceCapstone/actions/workflows/docs.yml/badge.svg)](https://github.com/tukue/AppliedDataScienceCapstone/actions/workflows/docs.yml)
+[![Tests & Code Quality](https://github.com/tukue/AppliedDataScience-project/actions/workflows/tests.yml/badge.svg)](https://github.com/tukue/AppliedDataScience-project/actions/workflows/tests.yml)
+[![Documentation](https://github.com/tukue/AppliedDataScience-project/actions/workflows/docs.yml/badge.svg)](https://github.com/tukue/AppliedDataScience-project/actions/workflows/docs.yml)
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-Applied Data Science Capstone project for predicting whether a SpaceX Falcon 9 first stage will land successfully. The original Coursera lab notebooks are preserved, and reusable Python modules have been added for data collection, cleaning, visualization, feature engineering, model training, and evaluation.
+This repository explains and refactors an applied data science capstone for predicting whether a SpaceX Falcon 9 first stage will land successfully. It keeps the original lab notebooks intact, then adds reusable Python modules, professional graph output, tests, and documentation so the work is easy to review and reproduce.
+
+## How To Read This Repository
+
+Start here if you are reviewing the project for the first time:
+
+1. Read this README for the project objective, structure, and execution path.
+2. Open [Project Guide](docs/PROJECT_GUIDE.md) for the narrative: what question is answered, which notebooks matter, what each module does, and how outputs should be interpreted.
+3. Read [Data Science Methodology](docs/METHODOLOGY.md) for the end-to-end process from business understanding to evaluation.
+4. Use [Quick Start](QUICKSTART.md) to run tests or open the preserved notebooks.
+5. Use [API Reference](docs/API.md) only when you need function-level details.
+
+The original notebooks are the lab evidence. The `src/` package is the cleaned, reusable implementation of the same workflow.
 
 ## Lab Outcome
 
@@ -19,7 +31,7 @@ The repository is organized so a reviewer can see both the original lab work and
 ## Project Structure
 
 ```text
-AppliedDataScienceCapstone/
+AppliedDataScience-project/
 |-- .github/workflows/          # GitHub Actions workflows
 |-- data/
 |   |-- external/               # External data sources
@@ -47,7 +59,7 @@ AppliedDataScienceCapstone/
 
 ## Data Science Methodology
 
-The lab follows a practical end-to-end data science methodology:
+The project follows a practical end-to-end data science methodology:
 
 1. Business understanding: define the prediction objective as estimating Falcon 9 first-stage landing success.
 2. Data collection: gather launch, rocket, core, payload, and site data from the SpaceX API and provided lab sources.
@@ -60,11 +72,26 @@ The lab follows a practical end-to-end data science methodology:
 
 See [Data Science Methodology](docs/METHODOLOGY.md) for the detailed process followed by the lab.
 
+## Analysis Flow
+
+```text
+Business question
+  -> data collection
+  -> data quality checks
+  -> feature preparation
+  -> exploratory visual analysis
+  -> model training
+  -> model evaluation
+  -> interpretation and communication
+```
+
+The expected model target is a binary landing outcome. Candidate predictors include launch site, orbit, payload mass, flight number, booster/core attributes, and engineered time-based features. The final model should be judged with classification metrics and interpreted with confusion matrices and feature-importance plots.
+
 ## Quick Start
 
 ```bash
-git clone git@github.com:tukue/AppliedDataScienceCapstone.git
-cd AppliedDataScienceCapstone
+git clone git@github.com:tukue/AppliedDataScience-project.git
+cd AppliedDataScience-project
 
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
@@ -173,6 +200,8 @@ cp .env.example .env
 
 ## Documentation
 
+- [Project Guide](docs/PROJECT_GUIDE.md)
+- [Improvement Plan](docs/IMPROVEMENT_PLAN.md)
 - [Quick Start](QUICKSTART.md)
 - [Data Science Methodology](docs/METHODOLOGY.md)
 - [API Reference](docs/API.md)
