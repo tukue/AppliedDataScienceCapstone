@@ -201,6 +201,7 @@ cp .env.example .env
 ## Documentation
 
 - [Project Guide](docs/PROJECT_GUIDE.md)
+- [Improvement Plan](docs/IMPROVEMENT_PLAN.md)
 - [Quick Start](QUICKSTART.md)
 - [Data Science Methodology](docs/METHODOLOGY.md)
 - [API Reference](docs/API.md)
