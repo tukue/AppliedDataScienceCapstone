@@ -160,6 +160,7 @@ class ModelTrainer:
             Path to saved model
         """
         model_path = MODELS_DIR / filename
+        model_path.parent.mkdir(parents=True, exist_ok=True)
         model_to_save = self.best_model or self.model
         joblib.dump(model_to_save, model_path)
         logger.info(f"Model saved to {model_path}")

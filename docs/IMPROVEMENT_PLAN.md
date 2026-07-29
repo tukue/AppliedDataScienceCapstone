@@ -18,6 +18,8 @@ The next phase should focus on turning the project from a refactored capstone in
 
 ### 1. Executive Summary
 
+Status: implemented in `docs/EXECUTIVE_SUMMARY.md`.
+
 Create `docs/EXECUTIVE_SUMMARY.md`.
 
 Purpose:
@@ -42,6 +44,8 @@ Expected impact:
 - Makes the project feel like a consulting engagement, not just a code repository.
 
 ### 2. Final Model Report
+
+Status: implemented as a consulting report template in `docs/MODEL_REPORT.md`.
 
 Create `docs/MODEL_REPORT.md`.
 
@@ -68,6 +72,8 @@ Expected impact:
 
 ### 3. Data Dictionary
 
+Status: implemented in `docs/DATA_DICTIONARY.md`.
+
 Create `docs/DATA_DICTIONARY.md`.
 
 Purpose:
@@ -92,6 +98,8 @@ Expected impact:
 ## Priority 2: Reproducible Pipeline
 
 ### 4. Pipeline Entry Point
+
+Status: implemented as `python -m src.pipeline` with deterministic sample launch data.
 
 Add a runnable pipeline, for example:
 
@@ -128,6 +136,8 @@ Expected impact:
 
 ### 5. Task Runner
 
+Status: implemented with `Makefile` targets for install, test, lint, format, and run.
+
 Add a `Makefile` or equivalent task runner.
 
 Recommended commands:
@@ -159,6 +169,8 @@ Expected impact:
 
 ### 6. Data Validation Module
 
+Status: implemented in `src/data/validation.py`.
+
 Add `src/data/validation.py`.
 
 Purpose:
@@ -182,6 +194,8 @@ Expected impact:
 
 ### 7. Validation Tests
 
+Status: implemented in `tests/test_validation.py`.
+
 Add `tests/test_validation.py`.
 
 Recommended test cases:
@@ -198,6 +212,8 @@ Expected impact:
 ## Priority 4: Experiment Tracking
 
 ### 8. Metrics Artifact
+
+Status: implemented for the sample pipeline as `reports/metrics.json`.
 
 Save model metrics to a structured file:
 
@@ -225,6 +241,8 @@ Expected impact:
 - Supports comparison across model runs.
 
 ### 9. Model Configuration Artifact
+
+Status: implemented for the sample pipeline as `reports/model_config.json`.
 
 Save run configuration to:
 

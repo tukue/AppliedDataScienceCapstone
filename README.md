@@ -101,6 +101,12 @@ pip install -r requirements-dev.txt
 pytest
 ```
 
+Run the reproducible sample pipeline:
+
+```bash
+python -m src.pipeline
+```
+
 Open the original notebooks:
 
 ```bash
@@ -190,6 +196,7 @@ black src tests
 - Default test split: `0.2`
 - Default cross-validation folds: `5`
 - Runtime data, logs, figures, and model binaries are not committed.
+- Pipeline-generated report artifacts are written under `reports/` and ignored by Git.
 - Empty artifact directories are tracked with `.gitkeep` so examples work after a fresh clone.
 
 Copy `.env.example` to `.env` if you need local overrides:
@@ -202,6 +209,9 @@ cp .env.example .env
 
 - [Project Guide](docs/PROJECT_GUIDE.md)
 - [Improvement Plan](docs/IMPROVEMENT_PLAN.md)
+- [Executive Summary](docs/EXECUTIVE_SUMMARY.md)
+- [Data Dictionary](docs/DATA_DICTIONARY.md)
+- [Model Report](docs/MODEL_REPORT.md)
 - [Quick Start](QUICKSTART.md)
 - [Data Science Methodology](docs/METHODOLOGY.md)
 - [API Reference](docs/API.md)

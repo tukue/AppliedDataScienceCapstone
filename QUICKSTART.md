@@ -44,7 +44,15 @@ Run coverage when you want a fuller local check:
 pytest --cov=src --cov-report=term-missing
 ```
 
-## 4. Common Tasks
+## 4. Run the Reproducible Pipeline
+
+```bash
+python -m src.pipeline
+```
+
+This command uses deterministic sample launch data so it can run locally and in CI without depending on live API availability. It writes processed data, a sample model artifact, and report JSON files to ignored runtime directories.
+
+## 5. Common Tasks
 
 ### Load and Process Data
 
@@ -130,7 +138,7 @@ top_features = select_top_features(X, y, method="mutual_info", n_features=10)
 print(top_features)
 ```
 
-## 5. File Locations
+## 6. File Locations
 
 | Type | Location |
 | --- | --- |
@@ -140,12 +148,13 @@ print(top_features)
 | Processed data | `data/processed/` |
 | External data | `data/external/` |
 | Models | `models/` |
+| Report artifacts | `reports/` |
 | Logs | `logs/` |
 | Source code | `src/` |
 | Tests | `tests/` |
 | Documentation | `docs/` |
 
-## 6. Quality Checks
+## 7. Quality Checks
 
 ```bash
 black --check src tests
