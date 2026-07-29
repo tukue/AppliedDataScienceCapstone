@@ -95,6 +95,10 @@ models/*.pth
 logs/*
 !logs/.gitkeep
 
+# Reports
+reports/*
+!reports/.gitkeep
+
 # OS
 .DS_Store
 Thumbs.db

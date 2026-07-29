@@ -10,10 +10,21 @@ EXTERNAL_DATA_DIR = DATA_DIR / "external"
 MODELS_DIR = PROJECT_ROOT / "models"
 LOGS_DIR = PROJECT_ROOT / "logs"
 NOTEBOOKS_DIR = PROJECT_ROOT / "notebooks"
+REPORTS_DIR = PROJECT_ROOT / "reports"
 
-# Create directories if they don't exist
-for dir_path in [RAW_DATA_DIR, PROCESSED_DATA_DIR, EXTERNAL_DATA_DIR, MODELS_DIR, LOGS_DIR]:
-    dir_path.mkdir(parents=True, exist_ok=True)
+
+def ensure_directories() -> None:
+    """Create project directories used by local workflows."""
+    for dir_path in [
+        RAW_DATA_DIR,
+        PROCESSED_DATA_DIR,
+        EXTERNAL_DATA_DIR,
+        MODELS_DIR,
+        LOGS_DIR,
+        REPORTS_DIR,
+    ]:
+        dir_path.mkdir(parents=True, exist_ok=True)
+
 
 # Data configuration
 SPACEX_API_URL = "https://api.spacexdata.com/v4"

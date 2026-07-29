@@ -68,6 +68,7 @@ def save_raw_data(df: pd.DataFrame, filename: str) -> None:
         filename: Output filename
     """
     output_path = RAW_DATA_DIR / filename
+    output_path.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(output_path, index=False)
     logger.info(f"Data saved to {output_path}")
 
