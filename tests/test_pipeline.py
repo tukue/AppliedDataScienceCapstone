@@ -2,9 +2,18 @@
 
 import json
 
+import numpy as np
 import pandas as pd
+import pytest
 
-from src.pipeline import build_sample_launch_data, prepare_modeling_data, train_pipeline
+from src.pipeline import (
+    build_sample_launch_data,
+    prepare_modeling_data,
+    to_json_serializable,
+    train_pipeline,
+    validate_equal_lengths,
+    write_json,
+)
 
 
 class TestPipeline:
@@ -24,6 +33,13 @@ class TestPipeline:
             "launch_date",
             "landing_success",
         }.issubset(df.columns)
+
+    def test_validate_equal_lengths_raises_for_mismatched_columns(self):
+        """Test source-array validation catches inconsistent sample data."""
+        data = {"flight_number": [1, 2], "payload_mass_kg": [1000]}
+
+        with pytest.raises(ValueError, match="Array length mismatch"):
+            validate_equal_lengths(data, context="test data")
 
     def test_prepare_modeling_data_returns_numeric_features(self):
         """Test processing creates model-ready features."""
@@ -55,3 +71,27 @@ class TestPipeline:
         assert metrics_path.exists()
         assert config_path.exists()
         assert json.loads(metrics_path.read_text())["accuracy"] == metrics["accuracy"]
+
+    def test_write_json_serializes_data_science_types(self, tmp_path):
+        """Test JSON artifacts handle NumPy and pandas values."""
+        output_path = tmp_path / "payload.json"
+        payload = {
+            "scalar": np.float64(0.75),
+            "array": np.array([1, 2, 3]),
+            "series": pd.Series([0.1, 0.2]),
+            "unserializable": tmp_path,
+        }
+
+        write_json(output_path, payload)
+
+        content = json.loads(output_path.read_text())
+        assert content["scalar"] == 0.75
+        assert content["array"] == [1, 2, 3]
+        assert content["series"] == [0.1, 0.2]
+        assert content["unserializable"] == str(tmp_path)
+
+    def test_to_json_serializable_handles_nested_values(self):
+        """Test nested payloads are converted recursively."""
+        payload = {"metrics": {"fold_scores": np.array([0.6, 0.7])}}
+
+        assert to_json_serializable(payload) == {"metrics": {"fold_scores": [0.6, 0.7]}}

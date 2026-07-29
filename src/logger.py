@@ -34,6 +34,7 @@ def setup_logger(name: str, log_file: str = None, console: bool = LOG_TO_CONSOLE
 
     if log_file:
         log_path = LOGS_DIR / log_file
+        log_path.parent.mkdir(parents=True, exist_ok=True)
         has_file_handler = any(
             isinstance(handler, logging.FileHandler)
             and getattr(handler, "baseFilename", None) == str(log_path)

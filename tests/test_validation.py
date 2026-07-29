@@ -43,6 +43,13 @@ class TestDataValidation:
         with pytest.raises(ValueError, match="must be binary"):
             validate_binary_target(df, "landing_success")
 
+    def test_validate_binary_target_raises_for_empty_target(self):
+        """Test binary-target validation rejects empty standalone target data."""
+        df = pd.DataFrame({"landing_success": []})
+
+        with pytest.raises(ValueError, match="empty or has no valid values"):
+            validate_binary_target(df, "landing_success")
+
     def test_validate_numeric_columns_raises_for_non_numeric_column(self):
         """Test numeric-column validation rejects strings."""
         df = pd.DataFrame({"payload_mass_kg": ["heavy"]})

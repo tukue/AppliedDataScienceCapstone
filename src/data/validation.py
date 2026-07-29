@@ -40,8 +40,11 @@ def validate_binary_target(df: pd.DataFrame, target_column: str) -> None:
         raise ValueError(f"Target column '{target_column}' contains missing values.")
 
     unique_values = set(target.unique())
+    if not unique_values:
+        raise ValueError(f"Target column '{target_column}' is empty or has no valid values.")
+
     valid_values = {0, 1, False, True}
-    if not unique_values or not unique_values.issubset(valid_values):
+    if not unique_values.issubset(valid_values):
         raise ValueError(f"Target column '{target_column}' must be binary.")
 
 

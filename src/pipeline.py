@@ -2,7 +2,7 @@
 
 import json
 from pathlib import Path
-from typing import Dict, Tuple
+from typing import Any, Dict, Iterable, Mapping, Tuple
 
 import pandas as pd
 
@@ -23,142 +23,158 @@ def build_sample_launch_data() -> pd.DataFrame:
     Returns:
         Sample launch DataFrame with source-style columns
     """
-    return pd.DataFrame(
-        {
-            "flight_number": list(range(1, 25)),
-            "payload_mass_kg": [
-                350,
-                525,
-                677,
-                500,
-                3170,
-                3325,
-                2296,
-                1316,
-                4535,
-                4428,
-                2216,
-                2395,
-                570,
-                4150,
-                5600,
-                5300,
-                9600,
-                2490,
-                6070,
-                2708,
-                9600,
-                12259,
-                15600,
-                13200,
-            ],
-            "orbit": [
-                "LEO",
-                "LEO",
-                "ISS",
-                "PO",
-                "GTO",
-                "GTO",
-                "ISS",
-                "LEO",
-                "GTO",
-                "GTO",
-                "ISS",
-                "LEO",
-                "PO",
-                "GTO",
-                "ISS",
-                "LEO",
-                "GTO",
-                "ISS",
-                "GTO",
-                "PO",
-                "LEO",
-                "GTO",
-                "ISS",
-                "GTO",
-            ],
-            "launch_site": [
-                "CCAFS SLC 40",
-                "CCAFS SLC 40",
-                "KSC LC 39A",
-                "VAFB SLC 4E",
-                "CCAFS SLC 40",
-                "CCAFS SLC 40",
-                "KSC LC 39A",
-                "CCAFS SLC 40",
-                "KSC LC 39A",
-                "CCAFS SLC 40",
-                "KSC LC 39A",
-                "VAFB SLC 4E",
-                "VAFB SLC 4E",
-                "CCAFS SLC 40",
-                "KSC LC 39A",
-                "KSC LC 39A",
-                "CCAFS SLC 40",
-                "KSC LC 39A",
-                "CCAFS SLC 40",
-                "VAFB SLC 4E",
-                "KSC LC 39A",
-                "CCAFS SLC 40",
-                "KSC LC 39A",
-                "CCAFS SLC 40",
-            ],
-            "reused": [
-                False,
-                False,
-                False,
-                False,
-                False,
-                True,
-                False,
-                True,
-                True,
-                False,
-                True,
-                False,
-                True,
-                True,
-                True,
-                True,
-                False,
-                True,
-                True,
-                True,
-                True,
-                False,
-                True,
-                True,
-            ],
-            "launch_date": pd.date_range("2014-01-01", periods=24, freq="90D").astype(str),
-            TARGET_COLUMN: [
-                0,
-                0,
-                1,
-                0,
-                0,
-                1,
-                1,
-                1,
-                0,
-                0,
-                1,
-                0,
-                1,
-                1,
-                1,
-                1,
-                0,
-                1,
-                1,
-                1,
-                1,
-                0,
-                1,
-                1,
-            ],
-        }
-    )
+    data = {
+        "flight_number": list(range(1, 25)),
+        "payload_mass_kg": [
+            350,
+            525,
+            677,
+            500,
+            3170,
+            3325,
+            2296,
+            1316,
+            4535,
+            4428,
+            2216,
+            2395,
+            570,
+            4150,
+            5600,
+            5300,
+            9600,
+            2490,
+            6070,
+            2708,
+            9600,
+            12259,
+            15600,
+            13200,
+        ],
+        "orbit": [
+            "LEO",
+            "LEO",
+            "ISS",
+            "PO",
+            "GTO",
+            "GTO",
+            "ISS",
+            "LEO",
+            "GTO",
+            "GTO",
+            "ISS",
+            "LEO",
+            "PO",
+            "GTO",
+            "ISS",
+            "LEO",
+            "GTO",
+            "ISS",
+            "GTO",
+            "PO",
+            "LEO",
+            "GTO",
+            "ISS",
+            "GTO",
+        ],
+        "launch_site": [
+            "CCAFS SLC 40",
+            "CCAFS SLC 40",
+            "KSC LC 39A",
+            "VAFB SLC 4E",
+            "CCAFS SLC 40",
+            "CCAFS SLC 40",
+            "KSC LC 39A",
+            "CCAFS SLC 40",
+            "KSC LC 39A",
+            "CCAFS SLC 40",
+            "KSC LC 39A",
+            "VAFB SLC 4E",
+            "VAFB SLC 4E",
+            "CCAFS SLC 40",
+            "KSC LC 39A",
+            "KSC LC 39A",
+            "CCAFS SLC 40",
+            "KSC LC 39A",
+            "CCAFS SLC 40",
+            "VAFB SLC 4E",
+            "KSC LC 39A",
+            "CCAFS SLC 40",
+            "KSC LC 39A",
+            "CCAFS SLC 40",
+        ],
+        "reused": [
+            False,
+            False,
+            False,
+            False,
+            False,
+            True,
+            False,
+            True,
+            True,
+            False,
+            True,
+            False,
+            True,
+            True,
+            True,
+            True,
+            False,
+            True,
+            True,
+            True,
+            True,
+            False,
+            True,
+            True,
+        ],
+        "launch_date": pd.date_range("2014-01-01", periods=24, freq="90D").astype(str),
+        TARGET_COLUMN: [
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+        ],
+    }
+    validate_equal_lengths(data, context="sample launch data")
+    return pd.DataFrame(data)
+
+
+def validate_equal_lengths(data: Mapping[str, Iterable], context: str) -> None:
+    """
+    Validate that tabular source arrays can be combined safely.
+
+    Args:
+        data: Mapping of column names to column values
+        context: Human-readable data source name
+
+    Raises:
+        ValueError: If columns have inconsistent lengths
+    """
+    lengths = {column: len(values) for column, values in data.items()}
+    if len(set(lengths.values())) != 1:
+        raise ValueError(f"Array length mismatch in {context}: {lengths}")
 
 
 def prepare_modeling_data(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.Series, pd.DataFrame]:
@@ -255,10 +271,37 @@ def write_json(path: Path, payload: Dict) -> None:
         path: Output path
         payload: JSON-serializable content
     """
-    serializable_payload = {
-        key: float(value) if hasattr(value, "item") else value for key, value in payload.items()
-    }
+    serializable_payload = to_json_serializable(payload)
     path.write_text(json.dumps(serializable_payload, indent=2, sort_keys=True))
+
+
+def to_json_serializable(value: Any) -> Any:
+    """
+    Convert common data-science objects into JSON-serializable values.
+
+    Args:
+        value: Value to convert
+
+    Returns:
+        JSON-compatible value
+    """
+    if isinstance(value, dict):
+        return {key: to_json_serializable(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [to_json_serializable(item) for item in value]
+    if hasattr(value, "tolist"):
+        return to_json_serializable(value.tolist())
+    if hasattr(value, "item"):
+        try:
+            return value.item()
+        except (AttributeError, TypeError, ValueError):
+            return str(value)
+
+    try:
+        json.dumps(value)
+        return value
+    except (TypeError, ValueError):
+        return str(value)
 
 
 def main() -> None:
