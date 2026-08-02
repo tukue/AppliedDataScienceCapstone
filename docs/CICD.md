@@ -48,9 +48,9 @@ Runs when documentation files change.
 Add these to your README.md:
 
 ```markdown
-[![Tests & Code Quality](https://github.com/tukue/AppliedDataScience-project/actions/workflows/tests.yml/badge.svg)](https://github.com/tukue/AppliedDataScience-project/actions/workflows/tests.yml)
-[![Documentation](https://github.com/tukue/AppliedDataScience-project/actions/workflows/docs.yml/badge.svg)](https://github.com/tukue/AppliedDataScience-project/actions/workflows/docs.yml)
-[![codecov](https://codecov.io/gh/tukue/AppliedDataScience-project/branch/main/graph/badge.svg)](https://codecov.io/gh/tukue/AppliedDataScience-project)
+[![Tests & Code Quality](../../actions/workflows/tests.yml/badge.svg)](../../actions/workflows/tests.yml)
+[![Documentation](../../actions/workflows/docs.yml/badge.svg)](../../actions/workflows/docs.yml)
+[![codecov](https://codecov.io/gh/<your-org>/AppliedDataScience-project/branch/main/graph/badge.svg)](https://codecov.io/gh/<your-org>/AppliedDataScience-project)
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
 ```
 

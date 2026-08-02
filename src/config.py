@@ -26,6 +26,22 @@ def ensure_directories() -> None:
         dir_path.mkdir(parents=True, exist_ok=True)
 
 
+def display_path(path: Path) -> str:
+    """
+    Return a reviewer-friendly path for logs and notebook output.
+
+    Args:
+        path: File or directory path
+
+    Returns:
+        Project-relative path when possible, otherwise only the path name
+    """
+    try:
+        return path.resolve().relative_to(PROJECT_ROOT.resolve()).as_posix()
+    except ValueError:
+        return path.name
+
+
 # Data configuration
 SPACEX_API_URL = "https://api.spacexdata.com/v4"
 TEST_SIZE = 0.2

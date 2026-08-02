@@ -3,7 +3,7 @@
 import requests
 import pandas as pd
 from src.logger import setup_logger
-from src.config import SPACEX_API_URL, RAW_DATA_DIR
+from src.config import SPACEX_API_URL, RAW_DATA_DIR, display_path
 
 logger = setup_logger(__name__)
 
@@ -70,7 +70,7 @@ def save_raw_data(df: pd.DataFrame, filename: str) -> None:
     output_path = RAW_DATA_DIR / filename
     output_path.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(output_path, index=False)
-    logger.info(f"Data saved to {output_path}")
+    logger.info(f"Data saved to {display_path(output_path)}")
 
 
 def load_raw_data(filename: str) -> pd.DataFrame:
@@ -85,5 +85,5 @@ def load_raw_data(filename: str) -> pd.DataFrame:
     """
     input_path = RAW_DATA_DIR / filename
     df = pd.read_csv(input_path)
-    logger.info(f"Loaded {len(df)} records from {input_path}")
+    logger.info(f"Loaded {len(df)} records from {display_path(input_path)}")
     return df

@@ -19,3 +19,21 @@ def test_ensure_directories_creates_expected_paths(tmp_path, monkeypatch):
     config.ensure_directories()
 
     assert all(path.exists() and path.is_dir() for path in paths.values())
+
+
+def test_display_path_returns_project_relative_path(tmp_path, monkeypatch):
+    """Test project paths are shown without local user folders."""
+    project_root = tmp_path / "project"
+    artifact_path = project_root / "models" / "model.joblib"
+    monkeypatch.setattr(config, "PROJECT_ROOT", project_root)
+
+    assert config.display_path(artifact_path) == "models/model.joblib"
+
+
+def test_display_path_hides_external_absolute_path(tmp_path, monkeypatch):
+    """Test external paths fall back to a non-identifying file name."""
+    project_root = tmp_path / "project"
+    external_path = tmp_path / "private-user-folder" / "analysis.log"
+    monkeypatch.setattr(config, "PROJECT_ROOT", project_root)
+
+    assert config.display_path(external_path) == "analysis.log"

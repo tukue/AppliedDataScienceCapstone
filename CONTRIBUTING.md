@@ -8,7 +8,7 @@ This project follows data science best practices. All contributions should maint
 
 1. Clone the repository and create a virtual environment:
 ```bash
-git clone git@github.com:tukue/AppliedDataScienceCapstone.git
+git clone git@github.com:<your-org>/AppliedDataScience-project.git
 cd AppliedDataScienceCapstone
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate

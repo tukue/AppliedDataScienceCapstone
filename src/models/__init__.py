@@ -17,7 +17,7 @@ from sklearn.metrics import (
 import joblib
 from pathlib import Path
 from src.logger import setup_logger
-from src.config import MODELS_DIR, TEST_SIZE, RANDOM_STATE, CV_FOLDS
+from src.config import MODELS_DIR, TEST_SIZE, RANDOM_STATE, CV_FOLDS, display_path
 
 logger = setup_logger(__name__)
 
@@ -163,7 +163,7 @@ class ModelTrainer:
         model_path.parent.mkdir(parents=True, exist_ok=True)
         model_to_save = self.best_model or self.model
         joblib.dump(model_to_save, model_path)
-        logger.info(f"Model saved to {model_path}")
+        logger.info(f"Model saved to {display_path(model_path)}")
         return model_path
 
     def load_model(self, filename: str) -> None:
@@ -175,7 +175,7 @@ class ModelTrainer:
         """
         model_path = MODELS_DIR / filename
         self.model = joblib.load(model_path)
-        logger.info(f"Model loaded from {model_path}")
+        logger.info(f"Model loaded from {display_path(model_path)}")
 
     def predict(self, X: pd.DataFrame) -> np.ndarray:
         """

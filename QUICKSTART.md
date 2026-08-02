@@ -7,7 +7,7 @@ For a reviewer-friendly explanation of the repository, start with [Project Guide
 ## 1. Set Up the Environment
 
 ```bash
-git clone git@github.com:tukue/AppliedDataScience-project.git
+git clone git@github.com:<your-org>/AppliedDataScience-project.git
 cd AppliedDataScience-project
 
 python -m venv venv

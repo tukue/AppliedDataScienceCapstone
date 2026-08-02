@@ -226,7 +226,7 @@ Run with: `pytest tests/ --cov=src`
 ### Installation
 ```bash
 # Clone
-git clone git@github.com:tukue/AppliedDataScienceCapstone.git
+git clone git@github.com:<your-org>/AppliedDataScience-project.git
 cd AppliedDataScienceCapstone
 
 # Setup
