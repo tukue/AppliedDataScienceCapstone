@@ -1,7 +1,7 @@
 # AppliedDataScience Project: SpaceX Falcon 9 Landing Prediction
 
-[![Tests & Code Quality](https://github.com/tukue/AppliedDataScience-project/actions/workflows/tests.yml/badge.svg)](https://github.com/tukue/AppliedDataScience-project/actions/workflows/tests.yml)
-[![Documentation](https://github.com/tukue/AppliedDataScience-project/actions/workflows/docs.yml/badge.svg)](https://github.com/tukue/AppliedDataScience-project/actions/workflows/docs.yml)
+[![Tests & Code Quality](../../actions/workflows/tests.yml/badge.svg)](../../actions/workflows/tests.yml)
+[![Documentation](../../actions/workflows/docs.yml/badge.svg)](../../actions/workflows/docs.yml)
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
@@ -14,8 +14,9 @@ Start here if you are reviewing the project for the first time:
 1. Read this README for the project objective, structure, and execution path.
 2. Open [Project Guide](docs/PROJECT_GUIDE.md) for the narrative: what question is answered, which notebooks matter, what each module does, and how outputs should be interpreted.
 3. Read [Data Science Methodology](docs/METHODOLOGY.md) for the end-to-end process from business understanding to evaluation.
-4. Use [Quick Start](QUICKSTART.md) to run tests or open the preserved notebooks.
-5. Use [API Reference](docs/API.md) only when you need function-level details.
+4. Use [Lab Output Guide](docs/LAB_OUTPUT.md) to understand the expected clean notebook and graph output.
+5. Use [Quick Start](QUICKSTART.md) to run tests or open the preserved notebooks.
+6. Use [API Reference](docs/API.md) only when you need function-level details.
 
 The original notebooks are the lab evidence. The `src/` package is the cleaned, reusable implementation of the same workflow.
 
@@ -90,7 +91,7 @@ The expected model target is a binary landing outcome. Candidate predictors incl
 ## Quick Start
 
 ```bash
-git clone git@github.com:tukue/AppliedDataScience-project.git
+git clone git@github.com:<your-org>/AppliedDataScience-project.git
 cd AppliedDataScience-project
 
 python -m venv venv
@@ -212,6 +213,7 @@ cp .env.example .env
 - [Executive Summary](docs/EXECUTIVE_SUMMARY.md)
 - [Data Dictionary](docs/DATA_DICTIONARY.md)
 - [Model Report](docs/MODEL_REPORT.md)
+- [Lab Output Guide](docs/LAB_OUTPUT.md)
 - [Quick Start](QUICKSTART.md)
 - [Data Science Methodology](docs/METHODOLOGY.md)
 - [API Reference](docs/API.md)
