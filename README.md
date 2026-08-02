@@ -1,4 +1,4 @@
-# AppliedDataScience Project: SpaceX Falcon 9 Landing Prediction
+# AppliedDataScience Project: SpaceX Falcon Landing Prediction
 
 [![Tests & Code Quality](../../actions/workflows/tests.yml/badge.svg)](../../actions/workflows/tests.yml)
 [![Documentation](../../actions/workflows/docs.yml/badge.svg)](../../actions/workflows/docs.yml)
